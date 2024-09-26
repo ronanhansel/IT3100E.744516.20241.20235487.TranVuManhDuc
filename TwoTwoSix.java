@@ -105,16 +105,23 @@ public class TwoTwoSix {
         double numB2 = Double.parseDouble(b2);
         double numC2 = Double.parseDouble(c2);
         double determinant = numA1 * numB2 - numA2 * numB1;
+
         if (determinant == 0) {
-            JOptionPane.showMessageDialog(null, "The system has no unique solution.",
-            "No Solution", JOptionPane.ERROR_MESSAGE);
-        }
-        double determinantX = numC1 * numB2 - numC2 * numB1;
-        double determinantY = numA1 * numC2 - numA2 * numC1;
-        double x = determinantX / determinant;
-        double y = determinantY / determinant;
-        JOptionPane.showMessageDialog(null, "The solution is: x = " + x + ", y = " + y,
+            if (numA1 * numC2 == numA2 * numC1 && numB1 * numC2 == numB2 * numC1) {
+            JOptionPane.showMessageDialog(null, "The system has infinitely many solutions.",
+                "Infinitely Many Solutions", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+            JOptionPane.showMessageDialog(null, "The system has no solution.",
+                "No Solution", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            double determinantX = numC1 * numB2 - numC2 * numB1;
+            double determinantY = numA1 * numC2 - numA2 * numC1;
+            double x = determinantX / determinant;
+            double y = determinantY / determinant;
+            JOptionPane.showMessageDialog(null, "The solution is: x = " + x + ", y = " + y,
             "Solution", JOptionPane.INFORMATION_MESSAGE);
+        }
     }
 
     private static void secondDegreeSolver(String a, String b, String c) {

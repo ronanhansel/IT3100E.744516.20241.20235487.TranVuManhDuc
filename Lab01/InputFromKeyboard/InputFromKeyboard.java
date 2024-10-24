@@ -10,10 +10,6 @@ public class InputFromKeyboard{
         System.out.println("How tall are you (m)?");
         double dHeight = keyboard.nextDouble();
 
-        //similar to other data types
-        //nextByte(), nextShort(), nextLong()
-        //nextFloat(), nextBoolean()
-
         System.out.println("Mrs/Ms." + strName + ", " + iAge + " years old. " + "Your height is " + dHeight + ".");
         
 

@@ -22,27 +22,6 @@ public class DigitalVideoDisc {
     public static int getNbDigitalVideoDiscs() {
         return nbDigitalVideoDiscs;
     }
-
-    public DigitalVideoDisc(String title) {
-        this.title = title;
-        this.id = ++nbDigitalVideoDiscs;
-    }
-
-    public DigitalVideoDisc(String title, String category, float cost) {
-        this(title);
-        this.category = category;
-        this.cost = cost;
-    }
-
-    public DigitalVideoDisc(String title, String category, String director, float cost) {
-        this(title, category, cost);
-        this.director = director;
-    }
-
-    public DigitalVideoDisc(String title, String category, String director, int length, float cost) {
-        this(title, category, director, cost);
-        this.length = length;
-    }
 	public String getTitle() {
 		return title;
 	}
@@ -83,32 +62,6 @@ public class DigitalVideoDisc {
 			this.cost = cost;
 		}		
 	}
-	public DigitalVideoDisc() {
-		this.title ="";
-		this.category ="";
-		this.director = "";
-		this.length = 0;
-		this.cost = 0.0f;
-	}
-	
-	public DigitalVideoDisc(String title) {
-		super();
-		this.title = title;
-	}
-
-	public DigitalVideoDisc(String title, String category, float cost) {
-		this.title = title;
-		this.category = category;
-		this.cost = cost;
-	}
-	
-	public DigitalVideoDisc(String title, String category, String director, float cost) {
-		this.title = title;
-		this.category = category;
-		this.director = director;
-		this.cost = cost;
-	}
-
 	public DigitalVideoDisc(String title, String category, String director, int length, float cost) {
 		this.title = title;
 		this.category = category;

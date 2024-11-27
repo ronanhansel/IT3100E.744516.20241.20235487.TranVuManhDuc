@@ -65,7 +65,37 @@ public class Cart {
 			itemsOrdered[i].show();
 		}
 	}
+ public void printCart() {
+        System.out.println("***********************CART***********************");
+        System.out.println("Ordered Items:");
+        for (int i = 0; i < qtyOrdered; i++) {
+            System.out.printf("%d. %s\n", (i + 1), itemsOrdered[i].toString());
+        }
+        System.out.printf("Total cost: %.2f $\n", totalCost());
+        System.out.println("***************************************************");
+    }
 
+    public DigitalVideoDisc searchByID(int id) {
+        for (int i = 0; i < qtyOrdered; i++) {
+            if (itemsOrdered[i].getId() == id) {
+                return itemsOrdered[i];
+            }
+        }
+        return null;
+    }
+
+    public void searchByTitle(String title) {
+        boolean found = false;
+        for (int i = 0; i < qtyOrdered; i++) {
+            if (itemsOrdered[i].isMatch(title)) {
+                System.out.println(itemsOrdered[i].toString());
+                found = true;
+            }
+        }
+        if (!found) {
+            System.out.println("No match found");
+        }
+    }
 }
 
 public class TestPassingParameter {
@@ -109,4 +139,40 @@ public static void swap(DVDWrapper dvd1, DVDWrapper dvd2) {
     DigitalVideoDisc tmp = dvd1.dvd;
     dvd1.dvd = dvd2.dvd;
     dvd2.dvd = tmp;
+}
+
+public class CartTest {
+    public static void main(String[] args) {
+        // Create a new cart
+        Cart cart = new Cart();
+
+        // Create new DVDs
+        DigitalVideoDisc dvd1 = new DigitalVideoDisc("The Lion King", 
+            "Animation", "Roger Allers", 87, 19.95f);
+        DigitalVideoDisc dvd2 = new DigitalVideoDisc("Star Wars", 
+            "Science Fiction", "George Lucas", 87, 24.95f);
+        DigitalVideoDisc dvd3 = new DigitalVideoDisc("Aladin", 
+            "Animation", 18.99f);
+
+        // Add DVDs to cart
+        cart.addDigitalVideoDisc(dvd1, dvd2, dvd3);
+
+        // Test print cart
+        System.out.println("Testing cart printing:");
+        cart.printCart();
+
+        // Test search by ID
+        System.out.println("\nTesting search by ID:");
+        DigitalVideoDisc found = cart.searchByID(2);
+        System.out.println(found != null ? found.toString() : "No match found");
+
+        // Test search by title
+        System.out.println("\nTesting search by title:");
+        System.out.println("Search for 'king':");
+        cart.searchByTitle("king");
+        System.out.println("Search for 'war':");
+        cart.searchByTitle("war");
+        System.out.println("Search for 'nonexistent':");
+        cart.searchByTitle("nonexistent");
+    }
 }

@@ -6,7 +6,15 @@ public class DigitalVideoDisc {
     private int length;
     private float cost;
     private int id;
- 	
+ 	@Override
+    public String toString() {
+        return String.format("DVD - %s - %s - %s - %d: %.2f $",
+            title, category, director, length, cost);
+    }
+
+    public boolean isMatch(String title) {
+        return this.title.toLowerCase().contains(title.toLowerCase());
+    }
 	public int getId() {
         return id;
     }

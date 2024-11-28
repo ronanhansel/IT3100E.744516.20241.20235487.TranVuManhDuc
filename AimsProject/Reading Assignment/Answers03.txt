@@ -1,0 +1,32 @@
+1. So sánh giữa varargs và array parameters
+Giống: 
+- Cả hai đều cho phép truyền nhiều đối tượng vào một phương thức.
+- Trong nội bộ phương thức, tham số varargs sẽ được xử lý như một mảng.
+Khác:
+- Cách truyền tham số:
++ Array Parameter: Yêu cầu truyền một mảng đã được chuẩn bị.
++ Varargs: Có thể truyền danh sách các đối tượng trực tiếp.
+- Linh hoạt:
++ Array Parameter: Ít linh hoạt hơn khi phải tạo mảng thủ công.
++ Varargs: Linh hoạt hơn, dễ sử dụng khi số lượng tham số thay đổi.
+- Trường hợp sử dung: 
++ Array Parameter: Phù hợp nếu dữ liệu đã tồn tại ở dạng mảng.
++ Varargs: Phù hợp khi muốn đơn giản hóa việc gọi phương thức với nhiều tham số.
+
+Varargs được ưu tiên vì:
+
++Linh hoạt hơn, đặc biệt khi số lượng DVD không cố định.
++Dễ gọi phương thức hơn trong các tình huống thực tế
+
+2. Java is strictly Pass by Value.
+3.
+Java là ngôn ngữ pass by value (truyền tham trị). Điều này có nghĩa là khi bạn truyền một tham số (object reference) vào phương thức, giá trị của tham số đó (là địa chỉ tham chiếu tới đối tượng) được sao chép. Trong phương thức swap, các tham chiếu o1 và o2 chỉ là bản sao của tham chiếu gốc jungleDVD và cinderellaDVD.
+Khi bạn hoán đổi o1 và o2: việc thay đổi giá trị của o1 và o2 chỉ ảnh hưởng đến các tham chiếu cục bộ trong phương thức swap(), chứ không thay đổi các tham chiếu ban đầu jungleDVD và cinderellaDVD trong hàm main. Do đó, sau khi gọi swap(), tiêu đề của các đối tượng vẫn giữ nguyên.
+
+4.Mặc dù Java truyền tham số theo giá trị, nhưng khi bạn truyền một tham chiếu đối tượng, bạn có thể thay đổi trạng thái nội tại của đối tượng mà tham chiếu đó trỏ tới (vì cả tham chiếu gốc và bản sao đều trỏ đến cùng một đối tượng trong bộ nhớ).
+
+5.The return type of the toString() method is String
+
+
+
+

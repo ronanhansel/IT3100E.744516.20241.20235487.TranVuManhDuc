@@ -1,1 +1,0 @@
-# environmentsetup-javabasics

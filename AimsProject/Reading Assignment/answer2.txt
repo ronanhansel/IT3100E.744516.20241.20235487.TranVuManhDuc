@@ -1,0 +1,31 @@
+1. So sánh giữa varargs và array parameters
+- Giống nhau:
+	* cả 2 đều cho phép truyền nhiều đối tượng vào một phương thức
+	* Trong nội bộ phương thức, tham số varargs sẽ được xử lý như một mảng
+- Khác nhau:
++ Cách truyền tham số:
+	* Array Parameter: Yêu cầu truyền một mảng đã được chuẩn bị
+	* Varargs: Có thể truyền danh sách các đối tượng trưc tiếp
++ Tính linh hoạt:
+	* Array Parameter: Ít linh hoạt hơn khi phải tạo mảng thủ công
+	* Varargs: Linh hoạt hơn, dễ sử dụng khị số lượng tham số thay đổi
++ Trường hợp sử dung:
+	* Array Parameter: Phù hợp nếu dữ lieu đã tồn tại ở dạng mảng
+	* Varargs: Phù hợp khi muốn đơn giản hóa việc gọi phương thức với nhiều tham số
+
+2. Trong trường hợp này thì Varargs được ưu tiên hơn vì:
+	- Linh hoạt hơn, khi số lượng DVD không cố định
+	- Dễ gọi phương thức hơn trong các tình huống thực tế
+3. Java is Pass by value
+4. After the call of swap(jungleDVD, cinderellaDVD) why does the title of these two objects still remain? 
+
+- Trong Java, khi gọi swap(jungleDVD, cinderellaDVD), bản sao của tham chiếu jungleDVD và cinderellaDVD được truyền vào phương thức swap()
+- Khi thực hiện gán o1 = o2; hoặc o2 = tmp; , nó chỉ thay đổi giá trị của bản sao tham chiếu, không ảnh hưởng đến các tham chiều gốc bên ngoài phương thức
+- Vì thế, các đối tượng jungleDVD và cinderallaDVD ở bên ngoài phương thức vẫn giữ nguyên giá trị ban đầu, dẫn đến tiêu ề của chúng không thay đổi 
+
+5.After the call of changeTitle(jungleDVD, cinderellaDVD.getTitle()) why is the title of the JungleDVD changed? 
+- Trong đoạn mã dvd.setTitle(title);, phương thức setTitle() thực sự thay đổi giá trị thuộc tính title của đối tượng mà dvd tham chiếu đến. Do dvd là bản sao của tham chiếu jungleDVD, thay đổi này phản ánh trên đối tượng thật sự.
+
+- Tuy nhiên, trong dòng dvd = new DigitalVideoDisc(oldTitle);, tham chiếu dvd được gán tới một đối tượng mới, nhưng điều này không ảnh hưởng đến tham chiếu gốc jungleDVD bên ngoài phương thức
+
+Kết quả là tiêu đề của jungleDVD được thay đổi bởi setTitle(), nhưng việc tạo đối tượng mới trong changeTitle() chỉ ảnh hưởng đến tham chiếu cục bộ dvd.

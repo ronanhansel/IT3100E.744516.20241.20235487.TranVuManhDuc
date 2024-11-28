@@ -1,0 +1,35 @@
+
+
+1. What class should implement the Comparable interface?
+The class representing the items in the cart (e.g., Item, Media, DVD, etc.) should implement the Comparable interface. Typically, this would be the base class or superclass that all cart items derive from if there are multiple types of items (e.g., a Media class if DVDs and other media types are subclasses).
+
+2. How should you implement the compareTo() method?
+The compareTo() method should implement the default ordering logic for the items. For example, if the primary ordering is by title and then by cost, you can implement it like this:
+@Override
+public int compareTo(Media other) {
+    // First compare by title (alphabetically)
+    int titleComparison = this.title.compareTo(other.title);
+    if (titleComparison != 0) {
+        return titleComparison;
+    }
+
+    // If titles are the same, compare by cost (numerically)
+    return Double.compare(this.cost, other.cost);
+}
+If the default ordering is by cost and then title, you can swap the order of comparison:
+@Override
+public int compareTo(Media other) {
+    // First compare by cost (numerically)
+    int costComparison = Double.compare(this.cost, other.cost);
+    if (costComparison != 0) {
+        return costComparison;
+    }
+
+    // If costs are the same, compare by title (alphabetically)
+    return this.title.compareTo(other.title);
+}
+
+3. Can we have two ordering rules (e.g., by title then cost and by cost then title) if we use this Comparable approach?
+
+No, the Comparable interface can only define one natural ordering, as determined by the compareTo() method. To achieve multiple ordering rules, you would need to use the Comparator interface. This allows you to define and use different comparator instances for different sorting criteria.
+

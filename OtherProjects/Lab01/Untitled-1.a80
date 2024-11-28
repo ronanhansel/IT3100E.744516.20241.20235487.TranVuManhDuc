@@ -1,0 +1,8 @@
+.text
+        slti t0, t1, 5
+        bne t0, zero, else
+        addi t1, zero , 5
+        addi t1, zero , 3
+        j endif
+else: add1 t1, zero, 10
+endif:

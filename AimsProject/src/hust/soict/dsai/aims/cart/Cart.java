@@ -65,5 +65,50 @@ public class Cart {
 			itemsOrdered[i].show();
 		}
 	}
+ public void printCart() {
+        System.out.println("***********************CART***********************");
+        System.out.println("Ordered Items:");
+        for (int i = 0; i < qtyOrdered; i++) {
+            System.out.printf("%d. %s\n", (i + 1), itemsOrdered[i].toString());
+        }
+        System.out.printf("Total cost: %.2f $\n", totalCost());
+        System.out.println("***************************************************");
+    }
 
+    public DigitalVideoDisc searchByID(int id) {
+        for (int i = 0; i < qtyOrdered; i++) {
+            if (itemsOrdered[i].getId() == id) {
+                return itemsOrdered[i];
+            }
+        }
+        return null;
+    }
+
+    public void searchByTitle(String title) {
+        boolean found = false;
+        for (int i = 0; i < qtyOrdered; i++) {
+            if (itemsOrdered[i].isMatch(title)) {
+                System.out.println(itemsOrdered[i].toString());
+                found = true;
+            }
+        }
+        if (!found) {
+            System.out.println("No match found");
+        }
+    }
+}
+
+
+public class DVDWrapper {
+    public DigitalVideoDisc dvd;
+    
+    public DVDWrapper(DigitalVideoDisc dvd) {
+        this.dvd = dvd;
+    }
+}
+
+public static void swap(DVDWrapper dvd1, DVDWrapper dvd2) {
+    DigitalVideoDisc tmp = dvd1.dvd;
+    dvd1.dvd = dvd2.dvd;
+    dvd2.dvd = tmp;
 }

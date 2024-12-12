@@ -1,93 +1,60 @@
-//package hust.soict.dsai.aims.store;
-//import hust.soict.dsai.aims.disc.DigitalVideoDisc;
-//
-//public class Store {
-//    private DigitalVideoDisc[] itemsInStore = new DigitalVideoDisc[100]; // Giới hạn 100 DVD trong cửa hàng
-//    private int currentItemCount = 0; // Số DVD hiện có trong cửa hàng
-//
-//    // Phương thức thêm DVD vào cửa hàng
-//
-//    public void addDVD(DigitalVideoDisc dvd) {
-//        if (currentItemCount < itemsInStore.length) {
-//            itemsInStore[currentItemCount] = dvd;
-//            currentItemCount++;
-//            System.out.println("DVD \"" + dvd.getTitle() + "\" has been added to the store.");
-//        } else {
-//            System.out.println("Store is full. Cannot add more DVDs.");
-//        }
-//    }
-//
-//    // Phương thức xóa DVD khỏi cửa hàng
-//    public void removeDVD(DigitalVideoDisc dvd) {
-//        boolean found = false;
-//        for (int i = 0; i < currentItemCount; i++) {
-//            if (itemsInStore[i].equals(dvd)) {
-//                found = true;
-//                // Di chuyển các DVD phía sau lên một vị trí
-//                for (int j = i; j < currentItemCount - 1; j++) {
-//                    itemsInStore[j] = itemsInStore[j + 1];
-//                }
-//                itemsInStore[currentItemCount - 1] = null;
-//                currentItemCount--;
-//                System.out.println("DVD \"" + dvd.getTitle() + "\" has been removed from the store.");
-//                break;
-//            }
-//        }
-//
-//        if (!found) {
-//            System.out.println("DVD \"" + dvd.getTitle() + "\" not found in the store.");
-//        }
-//    }
-//
-//    // Phương thức in danh sách DVD có trong cửa hàng
-//    public void printStore() {
-//        System.out.println("***********************STORE***********************");
-//        System.out.println("Available DVDs:");
-//        if (currentItemCount == 0) {
-//            System.out.println("No DVDs available in the store.");
-//        } else {
-//            for (int i = 0; i < currentItemCount; i++) {
-//                System.out.println((i + 1) + ". " + itemsInStore[i]);
-//            }
-//        }
-//        System.out.println("***************************************************");
-//    }
-//}
 package hust.soict.dsai.aims.store;
 
 import hust.soict.dsai.aims.media.Media;
-
-import java.util.ArrayList;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class Store {
-    ArrayList<Media> itemsInStore = new ArrayList<>();
-    public void addMedia(Media media){
-        if (!itemsInStore.contains(media)){
+    private ObservableList<Media> itemsInStore = FXCollections.observableArrayList();
+
+    // Thêm một Media vào Store
+    public void addMedia(Media media) {
+        if (!itemsInStore.contains(media)) {
             itemsInStore.add(media);
-            System.out.println("Add successfully!");
-        }
-        else System.out.println("Already exist!");
-    }
-    public void removeMedia(Media media){
-        itemsInStore.remove(media);
-    }
-    public void displayItemsInStore(){
-        for (Media media : itemsInStore){
-            System.out.println("+)"+media.toString());
+            System.out.println("Added successfully: " + media.getTitle());
+        } else {
+            System.out.println("This item already exists in the store: " + media.getTitle());
         }
     }
-    public Media searchMedia(String title){
-        Media found= new Media();
-        found.title="Wrong!";
-        for (Media media: itemsInStore){
-            if (media.title.equals(title)){
+
+    // Xóa một Media từ Store
+    public void removeMedia(Media media) {
+        if (itemsInStore.contains(media)) {
+            itemsInStore.remove(media);
+            System.out.println("Removed successfully: " + media.getTitle());
+        } else {
+            System.out.println("This item does not exist in the store: " + media.getTitle());
+        }
+    }
+
+    // Hiển thị tất cả các mục trong Store
+    public void displayItemsInStore() {
+        if (itemsInStore.isEmpty()) {
+            System.out.println("The store is empty!");
+            return;
+        }
+        System.out.println("******************** STORE ********************");
+        for (Media media : itemsInStore) {
+            System.out.println(media.toString());
+        }
+        System.out.println("**********************************************");
+    }
+
+    // Tìm kiếm Media theo tiêu đề
+    public Media searchMedia(String title) {
+        System.out.println("------ Searching for Media by Title ------");
+        for (Media media : itemsInStore) {
+            if (media.getTitle().equalsIgnoreCase(title)) {
+                System.out.println("Found: " + media);
                 return media;
             }
         }
-        return found;
-    }
-    public ArrayList<Media> Items(){
-        return  itemsInStore;
+        System.out.println("No media found with title: " + title);
+        return null;
     }
 
+    // Lấy danh sách các mục trong Store
+    public ObservableList<Media> getItemsInStore() {
+        return itemsInStore;
+    }
 }

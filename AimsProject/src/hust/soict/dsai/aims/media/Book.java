@@ -6,7 +6,7 @@ import java.util.List;
 public class Book extends Media {
     private List<String> authors = new ArrayList<>();
     private static int nbBooks=0;
-    public Book(){
+    public Book(String title){
         nbBooks++;
         id=nbBooks;
     }

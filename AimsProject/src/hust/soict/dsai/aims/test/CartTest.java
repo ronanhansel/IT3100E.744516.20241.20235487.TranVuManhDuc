@@ -1,4 +1,3 @@
-
 package hust.soict.dsai.aims.test;
 
 import hust.soict.dsai.aims.cart.Cart;
@@ -24,8 +23,8 @@ public class CartTest {
         System.out.println("The remain cost is: ");
         System.out.println(cart.totalCost());
         cart.displayInformation();
-        cart.searchDisc(2);
-        cart.searchDisc("Aladdin");
+        cart.searchById(2);
+        cart.searchByTitle("Aladdin");
 
     }
 }
